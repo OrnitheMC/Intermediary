@@ -19,7 +19,7 @@ plugins {
 }
 
 static List<String> getPublishedVersions() {
-	def xml = new URL("https://maven.legacyfabric.net/net/fabricmc/intermediary/maven-metadata.xml").text
+	def xml = new URL("https://copetan.jfrog.io/artifactory/minecraft-maven/me/copetan/intermediary/maven-metadata.xml").text
 	def metadata = new XmlSlurper().parseText(xml)
 	def versions = metadata.versioning.versions.version*.text();
 	return versions
@@ -70,7 +70,7 @@ file('mappings').eachFile {
 	publishing {
 		publications {
 			create("${mcVer.replace(" ", "")}_mavenJava", MavenPublication) {
-				groupId 'net.fabricmc'
+				groupId 'me.copetan'
 				artifactId "intermediary"
 				version mcVer
 				artifact(makeV1Jar.archiveFile) {
@@ -104,9 +104,9 @@ publishing {
 	repositories {
 		if (ENV.MAVEN_PUBLISH_TOKEN) {
 			maven {
-				url 'https://maven.legacyfabric.net/'
+				url 'https://copetan.jfrog.io/artifactory/minecraft-maven/'
 				credentials {
-					username 'BobTheBuildSlave'
+					username 'copebot'
 					password ENV.MAVEN_PUBLISH_TOKEN
 				}
 				authentication {
