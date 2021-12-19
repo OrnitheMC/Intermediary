@@ -6,7 +6,7 @@ the same across versions and mapping changes.
 ## Files included in this repo
 
 * __mappings/<mcversion>.tiny__: Intermediary mappings in the Tiny mapping format.
-* __matches/releases/gameversion/*.matches__: Matches between Minecraft versions, created by the Orinthe project with the aid of Matcher.
+* __matches/*.matches__: Matches between Minecraft versions, created by the Orinthe project with the aid of Matcher.
 
 ## Generating / updating mappings
 
