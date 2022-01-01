@@ -18,6 +18,7 @@ plugins {
 }
 
 static List<String> getPublishedVersions() {
+	// TODO Make a new Maven repo for this, under the net.ornithemc group ID
 	def xml = new URL("https://copetan.jfrog.io/artifactory/minecraft-maven/me/copetan/intermediary/maven-metadata.xml").text
 	def metadata = new XmlSlurper().parseText(xml)
 	def versions = metadata.versioning.versions.version*.text();
@@ -69,6 +70,7 @@ file('mappings').eachFile {
 	publishing {
 		publications {
 			create("${mcVer.replace(" ", "")}_mavenJava", MavenPublication) {
+				// TODO Make a new Maven repo for this, under the net.ornithemc group ID
 				groupId 'me.copetan'
 				artifactId "intermediary"
 				version mcVer
@@ -103,6 +105,7 @@ publishing {
 	repositories {
 		if (ENV.MAVEN_PUBLISH_TOKEN) {
 			maven {
+				// TODO Make a new Maven repo for this, under the net.ornithemc group ID
 				url 'https://copetan.jfrog.io/artifactory/minecraft-maven/'
 				credentials {
 					username 'copebot'
